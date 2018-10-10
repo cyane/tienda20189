@@ -29,7 +29,7 @@ STORE.namespace('STORE.Valida');
         },
 
         validarNumeroMovil : function(evt) {
-            parametro.nodo = evt.target;
+            parametro.nodo = evt;
         },
 
         activarSiguiente : function(){
