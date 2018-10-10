@@ -28,6 +28,10 @@ STORE.namespace('STORE.Valida');
               STORE.Valida.validarExpRegular();
         },
 
+        validarNumeroMovil : function(evt) {
+            parametro.nodo = evt.target;
+        },
+
         activarSiguiente : function(){
 
             for (var i = 0; i < STORE.list_input.length; i++) {
@@ -70,7 +74,7 @@ STORE.namespace('STORE.Valida');
             }
         },
 
-        validarExpRegular : function(){
+        validarExpRegular : function() {
 
             if(!parametro.expregular.test(parametro.nodo.value)){
 
