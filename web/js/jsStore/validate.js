@@ -199,3 +199,68 @@ STORE.namespace('STORE.ValidarFicheroName');
     }
 
 })(window)
+
+STORE.namespace('STORE.ValidarOrnitorrinco');
+(function (g) {
+
+    'use strict';
+
+    var parametro = {};
+
+    STORE.ValidarOrnitorrinco = {
+
+    /*
+        checkName: function () {
+
+            parametro.nodo.expregular = new RegExp(/^([a-zA-Z\.]*)([\.])([\w]{3})$/);//TODO cambiar el 3 por la longitud de la letra aceptada
+
+            return  parametro.nodo.expregular.test(parametro.nodo.value.substr(12));
+        }, */
+
+        validarArchivo: function(parametro){
+
+            let extension = parametro.nodo.value.substr(parametro.nodo.value.lastIndexOf('.')+1);
+
+            parametro.nodo.expregular = new RegExp(/^([a-zA-Z\.]*)([\.])([\w]{3})$/);
+
+            parametro.text=parametro.nodo.value.substr(12);
+
+            let valido = STORE.ValidacionUtil.validarListaValores(extension,parametro.formato) && STORE.ValidacionUtil.validarExpRegular(parametro);
+
+            parametro.mensajeError = "ERROR:Formato o nombre incorrecto";
+
+            STORE.ValidacionUtil.valorarConsecuencia(valido,parametro);
+        },
+
+        validarArchivoImagen: function (evt) {
+
+            parametro.nodo = evt.target;
+
+            parametro.formato = ['png', 'jpg', 'tif', 'bmp'];
+
+            STORE.ValidarOrnitorrinco.validarArchivo(parametro);
+
+        },
+
+        validarArchivoTexto: function (evt) {
+
+            parametro.nodo = evt.target;
+
+            parametro.formato =['pdf', 'txt'];
+
+            STORE.ValidarOrnitorrinco.validarArchivo(parametro);
+
+        },
+        
+        validarArchivoMusica: function (evt) {
+
+            parametro.nodo = evt.target;
+
+            parametro.formato =['mp3', 'mp4'];
+
+            STORE.ValidarOrnitorrinco.validarArchivo(parametro);
+        }
+
+    }
+
+})(window)
